@@ -1,0 +1,14 @@
+venv/
+google-cloud-sdk/
+*.tar.gz
+.git/
+.env
+data/
+.adk/
+.claude/
+.pytest_cache/
+__pycache__/
+*.pyc
+deck/
+evals/results.json
+.DS_Store

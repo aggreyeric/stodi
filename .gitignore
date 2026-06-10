@@ -1,0 +1,34 @@
+# Secrets & env
+.env
+
+# Persisted student data (JSON store)
+data/*.json
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+venv/
+
+# Bundled SDK / archives (not source)
+google-cloud-sdk/
+*.tar.gz
+
+# Local runtime / agent state
+.adk/
+.claude/
+
+# Deck render artifacts (pptx itself is tracked)
+deck/*.pdf
+deck/slide-*.jpg
+evals/results.json
+pilot_artifacts/
+
+# OS noise
+.DS_Store
+
+# Internal production docs — local only
+DEMO_SCRIPT.md
+PILOT.md
+TOOLS_PLAN.md
+deck/build_deck.js

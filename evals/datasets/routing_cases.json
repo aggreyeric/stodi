@@ -1,0 +1,45 @@
+{
+  "description": "Intent-routing cases. Each message is sent through the root orchestrator; the eval passes if any of the acceptable sub-agents participates in the turn (event author or transfer target).",
+  "cases": [
+    {
+      "id": "ROUTE-01",
+      "message": "Explain logarithms to me, I don't understand them at all",
+      "acceptable_agents": ["curriculum_agent", "tutor_agent"]
+    },
+    {
+      "id": "ROUTE-02",
+      "message": "Quiz me on algebra",
+      "acceptable_agents": ["tutor_agent", "curriculum_agent"]
+    },
+    {
+      "id": "ROUTE-03",
+      "message": "How am I doing? Show me my progress so far",
+      "acceptable_agents": ["retention_agent"]
+    },
+    {
+      "id": "ROUTE-04",
+      "message": "Please grade my answer to 'Solve x² - 5x + 6 = 0': I got x = 2 or x = 3 by factorizing (x-2)(x-3)",
+      "acceptable_agents": ["grader_agent"]
+    },
+    {
+      "id": "ROUTE-05",
+      "message": "What topics are in the WAEC mathematics syllabus?",
+      "acceptable_agents": ["curriculum_agent"]
+    },
+    {
+      "id": "ROUTE-06",
+      "message": "What should I revise today?",
+      "acceptable_agents": ["retention_agent"]
+    },
+    {
+      "id": "ROUTE-07",
+      "message": "Give me a past question on probability",
+      "acceptable_agents": ["curriculum_agent", "tutor_agent"]
+    },
+    {
+      "id": "ROUTE-08",
+      "message": "Mark this for me: the mean of 2, 4, 6, 8, 10 is 6. Am I correct?",
+      "acceptable_agents": ["grader_agent", "tutor_agent"]
+    }
+  ]
+}

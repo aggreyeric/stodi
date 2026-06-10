@@ -1,0 +1,265 @@
+{
+  "name": "WAEC English Language",
+  "exam_board": "WAEC",
+  "subject": "English Language",
+  "version": "1.1",
+  "syllabus": {
+    "subject": "English Language",
+    "exam_board": "WAEC",
+    "total_marks": 100,
+    "topics": [
+      {"id": "E1", "name": "Comprehension", "parent_id": null, "difficulty": "medium", "weight": 3.0},
+      {"id": "E2", "name": "Summary Writing", "parent_id": null, "difficulty": "medium", "weight": 2.5},
+      {"id": "E3", "name": "Essay Writing", "parent_id": null, "difficulty": "hard", "weight": 3.5},
+      {"id": "E3a", "name": "Narrative Essay", "parent_id": "E3", "difficulty": "medium", "weight": 1.0},
+      {"id": "E3b", "name": "Descriptive Essay", "parent_id": "E3", "difficulty": "medium", "weight": 1.0},
+      {"id": "E3c", "name": "Argumentative Essay", "parent_id": "E3", "difficulty": "hard", "weight": 1.0},
+      {"id": "E3d", "name": "Formal Letter Writing", "parent_id": "E3", "difficulty": "medium", "weight": 1.0},
+      {"id": "E3e", "name": "Informal Letter Writing", "parent_id": "E3", "difficulty": "easy", "weight": 1.0},
+      {"id": "E4", "name": "Lexis and Structure", "parent_id": null, "difficulty": "medium", "weight": 2.5},
+      {"id": "E4a", "name": "Synonyms and Antonyms", "parent_id": "E4", "difficulty": "easy", "weight": 1.0},
+      {"id": "E4b", "name": "Idiomatic Expressions", "parent_id": "E4", "difficulty": "medium", "weight": 1.0},
+      {"id": "E4c", "name": "Sentence Construction", "parent_id": "E4", "difficulty": "medium", "weight": 1.0},
+      {"id": "E4d", "name": "Tenses and Concord", "parent_id": "E4", "difficulty": "medium", "weight": 1.0},
+      {"id": "E5", "name": "Oral English", "parent_id": null, "difficulty": "medium", "weight": 2.0},
+      {"id": "E5a", "name": "Vowels and Consonants", "parent_id": "E5", "difficulty": "medium", "weight": 1.0},
+      {"id": "E5b", "name": "Stress and Intonation", "parent_id": "E5", "difficulty": "hard", "weight": 1.0},
+      {"id": "E6", "name": "Register and Context", "parent_id": null, "difficulty": "medium", "weight": 2.0},
+      {"id": "E7", "name": "Figures of Speech", "parent_id": null, "difficulty": "medium", "weight": 1.5},
+      {"id": "E8", "name": "Punctuation and Mechanics", "parent_id": null, "difficulty": "easy", "weight": 1.5}
+    ]
+  },
+  "past_questions": {
+    "subject": "English Language",
+    "exam_board": "WAEC",
+    "questions": [
+      {
+        "id": "WAEC-ENG-2022-01",
+        "year": 2022,
+        "subject": "English Language",
+        "topic_id": "E4a",
+        "question_type": "mcq",
+        "question_text": "Choose the word that is nearest in meaning to the underlined word: The teacher was 'furious' with the student.",
+        "options": ["A. happy", "B. angry", "C. calm", "D. indifferent"],
+        "correct_answer": "B",
+        "marks": 1
+      },
+      {
+        "id": "WAEC-ENG-2022-02",
+        "year": 2022,
+        "subject": "English Language",
+        "topic_id": "E4d",
+        "question_type": "mcq",
+        "question_text": "Choose the option that best completes the sentence: Neither the teacher nor the students ___ present.",
+        "options": ["A. was", "B. were", "C. is", "D. am"],
+        "correct_answer": "B",
+        "marking_scheme": "With 'neither … nor', the verb agrees with the subject nearer to it. The nearer subject is 'the students' (plural), so the plural past form 'were' is correct.",
+        "marks": 1
+      },
+      {
+        "id": "WAEC-ENG-2021-01",
+        "year": 2021,
+        "subject": "English Language",
+        "topic_id": "E3d",
+        "question_type": "essay",
+        "question_text": "Write a formal letter to the Director of Education in your state, complaining about the lack of facilities in your school.",
+        "marking_scheme": "Format (2 marks): Sender's address, date, recipient's address, salutation, heading, closing. Content (6 marks): Clear complaint, specific examples of lacking facilities, impact on learning, suggested solutions. Expression (4 marks): Formal tone, correct grammar, appropriate vocabulary. Mechanical accuracy (3 marks): Spelling, punctuation, paragraphing. Total: 15 marks.",
+        "marks": 15
+      },
+      {
+        "id": "WAEC-ENG-2021-02",
+        "year": 2021,
+        "subject": "English Language",
+        "topic_id": "E7",
+        "question_type": "mcq",
+        "question_text": "The statement 'The world is a stage' is an example of:",
+        "options": ["A. simile", "B. metaphor", "C. personification", "D. hyperbole"],
+        "correct_answer": "B",
+        "marks": 1
+      },
+      {
+        "id": "WAEC-ENG-2020-01",
+        "year": 2020,
+        "subject": "English Language",
+        "topic_id": "E2",
+        "question_type": "theory",
+        "question_text": "In not more than 50 words, summarize the passage on the effects of deforestation.",
+        "marking_scheme": "Content (3 marks): Must capture 3 key points — loss of biodiversity, climate change contribution, soil erosion. Organization (2 marks): Coherent, concise, no irrelevant details. Expression (2 marks): Own words, not copied from passage. Total: 7 marks.",
+        "marks": 7
+      },
+      {
+        "id": "WAEC-ENG-PRAC-06",
+        "year": 2023,
+        "subject": "English Language",
+        "topic_id": "E4a",
+        "question_type": "mcq",
+        "question_text": "Choose the word that is opposite in meaning to the underlined word: The solution in the beaker was 'transparent'.",
+        "options": ["A. clear", "B. colourless", "C. opaque", "D. bright"],
+        "correct_answer": "C",
+        "marks": 1
+      },
+      {
+        "id": "WAEC-ENG-PRAC-07",
+        "year": 2023,
+        "subject": "English Language",
+        "topic_id": "E4a",
+        "question_type": "mcq",
+        "question_text": "Choose the word nearest in meaning to the underlined word: The ceremony will 'commence' at noon.",
+        "options": ["A. end", "B. begin", "C. pause", "D. continue"],
+        "correct_answer": "B",
+        "marks": 1
+      },
+      {
+        "id": "WAEC-ENG-PRAC-08",
+        "year": 2022,
+        "subject": "English Language",
+        "topic_id": "E4b",
+        "question_type": "mcq",
+        "question_text": "The expression 'to let the cat out of the bag' means:",
+        "options": ["A. to free a trapped animal", "B. to reveal a secret", "C. to cause confusion", "D. to start a quarrel"],
+        "correct_answer": "B",
+        "marks": 1
+      },
+      {
+        "id": "WAEC-ENG-PRAC-09",
+        "year": 2022,
+        "subject": "English Language",
+        "topic_id": "E4d",
+        "question_type": "mcq",
+        "question_text": "Choose the option that best completes the sentence: Each of the boys ___ given a prize.",
+        "options": ["A. were", "B. have", "C. was", "D. are"],
+        "correct_answer": "C",
+        "marking_scheme": "'Each' is a singular indefinite pronoun and takes a singular verb, so 'was' is correct.",
+        "marks": 1
+      },
+      {
+        "id": "WAEC-ENG-PRAC-10",
+        "year": 2021,
+        "subject": "English Language",
+        "topic_id": "E4d",
+        "question_type": "mcq",
+        "question_text": "Choose the option that best completes the sentence: By the time we arrived at the station, the train ___.",
+        "options": ["A. has left", "B. had left", "C. left", "D. is leaving"],
+        "correct_answer": "B",
+        "marking_scheme": "An action completed before another past action takes the past perfect: 'had left'.",
+        "marks": 1
+      },
+      {
+        "id": "WAEC-ENG-PRAC-11",
+        "year": 2021,
+        "subject": "English Language",
+        "topic_id": "E4c",
+        "question_type": "mcq",
+        "question_text": "Choose the grammatically correct sentence:",
+        "options": ["A. She don't like rice.", "B. She doesn't likes rice.", "C. She doesn't like rice.", "D. She not like rice."],
+        "correct_answer": "C",
+        "marks": 1
+      },
+      {
+        "id": "WAEC-ENG-PRAC-12",
+        "year": 2023,
+        "subject": "English Language",
+        "topic_id": "E5a",
+        "question_type": "mcq",
+        "question_text": "Choose the word that has the same vowel sound as 'seat':",
+        "options": ["A. sit", "B. set", "C. key", "D. say"],
+        "correct_answer": "C",
+        "marking_scheme": "'Seat' has the long vowel /iː/, which also appears in 'key'. 'Sit' has /ɪ/, 'set' has /e/, 'say' has /eɪ/.",
+        "marks": 1
+      },
+      {
+        "id": "WAEC-ENG-PRAC-13",
+        "year": 2023,
+        "subject": "English Language",
+        "topic_id": "E5b",
+        "question_type": "mcq",
+        "question_text": "Choose the word that is stressed on the second syllable:",
+        "options": ["A. teacher", "B. computer", "C. education", "D. happiness"],
+        "correct_answer": "B",
+        "marking_scheme": "'Computer' is stressed com-PU-ter. 'Teacher' and 'happiness' are stressed on the first syllable; 'education' on the third.",
+        "marks": 1
+      },
+      {
+        "id": "WAEC-ENG-PRAC-14",
+        "year": 2020,
+        "subject": "English Language",
+        "topic_id": "E6",
+        "question_type": "mcq",
+        "question_text": "Which of the following words belongs to the register of medicine?",
+        "options": ["A. plaintiff", "B. diagnosis", "C. manuscript", "D. cockpit"],
+        "correct_answer": "B",
+        "marks": 1
+      },
+      {
+        "id": "WAEC-ENG-PRAC-15",
+        "year": 2020,
+        "subject": "English Language",
+        "topic_id": "E7",
+        "question_type": "mcq",
+        "question_text": "The expression 'as brave as a lion' is an example of:",
+        "options": ["A. metaphor", "B. irony", "C. simile", "D. euphemism"],
+        "correct_answer": "C",
+        "marks": 1
+      },
+      {
+        "id": "WAEC-ENG-PRAC-16",
+        "year": 2022,
+        "subject": "English Language",
+        "topic_id": "E8",
+        "question_type": "mcq",
+        "question_text": "Choose the correctly punctuated sentence:",
+        "options": ["A. Where are you going.", "B. Where are you going?", "C. Where, are you going.", "D. where are you going"],
+        "correct_answer": "B",
+        "marks": 1
+      },
+      {
+        "id": "WAEC-ENG-PRAC-17",
+        "year": 2023,
+        "subject": "English Language",
+        "topic_id": "E1",
+        "question_type": "theory",
+        "question_text": "Read the passage and answer the questions. PASSAGE: 'Adaeze woke before dawn on market day. She packed her baskets of peppers and garden eggs, balanced the largest on her head, and set out on the long walk to Eke market. By the time the sun rose she had already secured the best stall, and by noon every basket was empty.' QUESTIONS: (a) Why did Adaeze wake before dawn? (b) What did she carry to the market? (c) What does 'every basket was empty' tell us about her day?",
+        "correct_answer": "(a) It was market day and she wanted to reach the market early to secure the best stall. (b) Baskets of peppers and garden eggs. (c) She sold all her produce — her trip was successful.",
+        "marking_scheme": "2 marks per sub-question: full mark for an answer drawn from the passage in the candidate's own words; 1 mark if lifted verbatim but correct; 0 if wrong. Total: 6 marks.",
+        "marks": 6
+      },
+      {
+        "id": "WAEC-ENG-PRAC-18",
+        "year": 2021,
+        "subject": "English Language",
+        "topic_id": "E2",
+        "question_type": "theory",
+        "question_text": "In not more than 50 words, summarize the three main dangers of excessive social media use among students discussed in the passage: reduced study time, exposure to misinformation, and disrupted sleep.",
+        "marking_scheme": "Content (3 marks): one mark per key point — reduced study time, exposure to misinformation, disrupted sleep. Organization (2 marks): one connected paragraph within the word limit. Expression (2 marks): candidate's own words, grammatically correct. Total: 7 marks.",
+        "marks": 7
+      },
+      {
+        "id": "WAEC-ENG-PRAC-19",
+        "year": 2022,
+        "subject": "English Language",
+        "topic_id": "E3c",
+        "question_type": "essay",
+        "question_text": "'Boarding school is better than day school.' Write an argument for or against this statement.",
+        "marking_scheme": "Content (6 marks): a clear stance with at least three developed supporting points. Organization (3 marks): introduction, body paragraphs, conclusion. Expression (4 marks): persuasive tone, varied sentence structure, correct grammar. Mechanical accuracy (2 marks): spelling and punctuation. Total: 15 marks.",
+        "marks": 15
+      },
+      {
+        "id": "WAEC-ENG-PRAC-20",
+        "year": 2020,
+        "subject": "English Language",
+        "topic_id": "E3a",
+        "question_type": "essay",
+        "question_text": "Write a story that ends with the words: 'I will never forget that day.'",
+        "marking_scheme": "Content (6 marks): a coherent story that genuinely ends with the required sentence. Organization (3 marks): clear beginning, middle, end; logical sequence. Expression (4 marks): vivid narration, varied vocabulary, correct tenses. Mechanical accuracy (2 marks): spelling and punctuation. Total: 15 marks.",
+        "marks": 15
+      }
+    ]
+  },
+  "retention": {
+    "easy_interval_hours": 72,
+    "medium_interval_hours": 48,
+    "hard_interval_hours": 24,
+    "max_questions_per_drip": 5,
+    "drip_time": "08:00"
+  }
+}

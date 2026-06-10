@@ -1,0 +1,105 @@
+{
+  "description": "Held-out grading cases. Each case pairs a real exam-pack question + marking scheme with a synthetic student answer and the marks a human examiner would award. The Grader agent must land within `tolerance` of `expected_marks`.",
+  "cases": [
+    {
+      "id": "GRADE-01",
+      "question_id": "WAEC-MATH-2022-02",
+      "question_text": "Solve the equation: x² - 5x + 6 = 0",
+      "marking_scheme": "1 mark for correct factorization (x-2)(x-3)=0. 1 mark for each correct root. Total: 3 marks.",
+      "max_marks": 3,
+      "student_answer": "Factorizing: (x-2)(x-3) = 0, so x = 2 or x = 3",
+      "expected_marks": 3,
+      "tolerance": 0
+    },
+    {
+      "id": "GRADE-02",
+      "question_id": "WAEC-MATH-2022-02",
+      "question_text": "Solve the equation: x² - 5x + 6 = 0",
+      "marking_scheme": "1 mark for correct factorization (x-2)(x-3)=0. 1 mark for each correct root. Total: 3 marks.",
+      "max_marks": 3,
+      "student_answer": "(x-2)(x-3) = 0 so x = 2",
+      "expected_marks": 2,
+      "tolerance": 0
+    },
+    {
+      "id": "GRADE-03",
+      "question_id": "WAEC-MATH-2022-02",
+      "question_text": "Solve the equation: x² - 5x + 6 = 0",
+      "marking_scheme": "1 mark for correct factorization (x-2)(x-3)=0. 1 mark for each correct root. Total: 3 marks.",
+      "max_marks": 3,
+      "student_answer": "x = 1 or x = 6",
+      "expected_marks": 0,
+      "tolerance": 0
+    },
+    {
+      "id": "GRADE-04",
+      "question_id": "WAEC-MATH-2020-01",
+      "question_text": "The 3rd term of a GP is 18 and the 6th term is 486. Find the first term and the common ratio.",
+      "marking_scheme": "1 mark for setting up ar² = 18. 1 mark for setting up ar⁵ = 486. 1 mark for dividing to find r = 3. 1 mark for finding a = 2. Total: 4 marks.",
+      "max_marks": 4,
+      "student_answer": "ar² = 18 and ar⁵ = 486. Dividing: r³ = 27, so r = 3. Then a × 9 = 18, so a = 2.",
+      "expected_marks": 4,
+      "tolerance": 0
+    },
+    {
+      "id": "GRADE-05",
+      "question_id": "WAEC-MATH-2020-01",
+      "question_text": "The 3rd term of a GP is 18 and the 6th term is 486. Find the first term and the common ratio.",
+      "marking_scheme": "1 mark for setting up ar² = 18. 1 mark for setting up ar⁵ = 486. 1 mark for dividing to find r = 3. 1 mark for finding a = 2. Total: 4 marks.",
+      "max_marks": 4,
+      "student_answer": "ar² = 18, ar⁵ = 486. Dividing gives r³ = 27 so r = 3. Then a = 6.",
+      "expected_marks": 3,
+      "tolerance": 1
+    },
+    {
+      "id": "GRADE-06",
+      "question_id": "WAEC-MATH-2021-01",
+      "question_text": "A triangle has sides of lengths 5cm and 7cm with an included angle of 60°. Find the area of the triangle.",
+      "marking_scheme": "1 mark for correct formula (½ab sin C). 1 mark for correct substitution. 1 mark for correct evaluation. Total: 3 marks.",
+      "max_marks": 3,
+      "student_answer": "Area = ½ × 5 × 7 × sin 60° = 17.5 × 0.8660 = 15.16 cm²",
+      "expected_marks": 3,
+      "tolerance": 0
+    },
+    {
+      "id": "GRADE-07",
+      "question_id": "WAEC-MATH-2021-01",
+      "question_text": "A triangle has sides of lengths 5cm and 7cm with an included angle of 60°. Find the area of the triangle.",
+      "marking_scheme": "1 mark for correct formula (½ab sin C). 1 mark for correct substitution. 1 mark for correct evaluation. Total: 3 marks.",
+      "max_marks": 3,
+      "student_answer": "Area = 5 × 7 × sin 60° = 30.31 cm²",
+      "expected_marks": 1,
+      "tolerance": 1
+    },
+    {
+      "id": "GRADE-08",
+      "question_id": "WAEC-MATH-PRAC-11",
+      "question_text": "Given that log₁₀ 2 = 0.3010, evaluate log₁₀ 50 without using tables or calculator.",
+      "marking_scheme": "1 mark for writing 50 = 100/2. 1 mark for log 50 = log 100 - log 2 = 2 - 0.3010. 1 mark for the answer 1.6990. Total: 3 marks.",
+      "max_marks": 3,
+      "student_answer": "50 = 100/2, so log 50 = log 100 - log 2 = 2 - 0.3010 = 1.6990",
+      "expected_marks": 3,
+      "tolerance": 0
+    },
+    {
+      "id": "GRADE-09",
+      "question_id": "WAEC-MATH-PRAC-16",
+      "question_text": "Solve the simultaneous equations: 2x + y = 7 and x - y = 2",
+      "marking_scheme": "1 mark for eliminating one variable (e.g. adding the equations to get 3x = 9). 1 mark for x = 3. 1 mark for y = 1. Total: 3 marks.",
+      "max_marks": 3,
+      "student_answer": "Adding both equations: 3x = 9, x = 3. Substituting: 3 - y = 2, y = 1.",
+      "expected_marks": 3,
+      "tolerance": 0
+    },
+    {
+      "id": "GRADE-10",
+      "question_id": "WAEC-MATH-PRAC-22",
+      "question_text": "Find the median of the numbers: 3, 5, 2, 8, 7",
+      "marking_scheme": "1 mark for arranging in order (2, 3, 5, 7, 8). 1 mark for identifying the middle value 5. Total: 2 marks.",
+      "max_marks": 2,
+      "student_answer": "5",
+      "expected_marks": 1,
+      "tolerance": 1
+    }
+  ]
+}

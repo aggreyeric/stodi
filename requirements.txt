@@ -1,0 +1,13 @@
+google-adk>=2.0.0
+google-cloud-aiplatform
+google-genai
+python-dotenv
+pydantic>=2.0
+python-telegram-bot
+fastapi
+uvicorn[standard]
+# Optional: production profile store. Code falls back to JSON file if absent.
+google-cloud-firestore
+
+# MCP — exam-pack registry server (stdio) consumed via ADK McpToolset
+mcp
