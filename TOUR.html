@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stodi — Interactive Architecture Tour</title>
+<style>
+  :root{
+    --forest:#2C5F2D; --moss:#97BC62; --moss-tint:#E9F1DF; --cream:#F7F6F1;
+    --ink:#1F2A1F; --gold:#E0A93E; --dark:#1B2E1C; --gray:#6B7466; --card:#FFFFFF;
+    --code-bg:#142016; --code-fg:#C9E4B4;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,'Segoe UI',Roboto,sans-serif;background:var(--cream);color:var(--ink);line-height:1.65}
+  a{color:var(--forest)}
+  .wrap{display:flex;min-height:100vh}
+  nav{width:240px;background:var(--dark);padding:24px 0;position:sticky;top:0;height:100vh;overflow-y:auto;flex-shrink:0}
+  nav h1{color:#fff;font-size:22px;letter-spacing:3px;padding:0 22px 4px}
+  nav p.tag{color:var(--moss);font-size:11.5px;padding:0 22px 18px;border-bottom:1px solid #2e4630;margin-bottom:12px}
+  nav a{display:block;color:#cfe0c6;text-decoration:none;font-size:13.5px;padding:8px 22px;border-left:3px solid transparent}
+  nav a:hover{background:#24411f;color:#fff}
+  nav a.active{border-left-color:var(--gold);color:#fff;background:#24411f}
+  nav .sec{color:#7d9478;font-size:10.5px;letter-spacing:2px;text-transform:uppercase;padding:16px 22px 6px}
+  main{flex:1;max-width:880px;padding:40px 48px 120px}
+  h2{font-size:26px;margin:54px 0 6px;color:var(--ink);scroll-margin-top:20px}
+  h2:first-of-type{margin-top:0}
+  h3{font-size:16px;margin:26px 0 8px;color:var(--forest)}
+  p{margin:10px 0;font-size:15px}
+  .lead{font-size:17px;color:var(--gray)}
+  .card{background:var(--card);border-radius:10px;padding:18px 22px;margin:14px 0;box-shadow:0 2px 10px rgba(31,42,31,.08)}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:800px){.grid{grid-template-columns:1fr}main{padding:24px}nav{display:none}}
+  code{background:var(--moss-tint);padding:1px 6px;border-radius:4px;font-size:13px;font-family:ui-monospace,Menlo,monospace}
+  pre{background:var(--code-bg);color:var(--code-fg);padding:16px 18px;border-radius:10px;font-size:13px;overflow-x:auto;margin:12px 0;font-family:ui-monospace,Menlo,monospace;line-height:1.55}
+  pre b{color:#fff}
+  table{border-collapse:collapse;width:100%;margin:12px 0;font-size:13.5px;background:#fff;border-radius:8px;overflow:hidden}
+  th{background:var(--forest);color:#fff;text-align:left;padding:9px 12px;font-size:12.5px}
+  td{padding:9px 12px;border-bottom:1px solid #e6e8de}
+  tr:last-child td{border-bottom:none}
+  .pill{display:inline-block;background:var(--forest);color:#fff;border-radius:20px;padding:2px 12px;font-size:11px;font-weight:700;letter-spacing:1px;margin-right:6px}
+  .stat{font-size:34px;font-weight:800;color:var(--forest)}
+  .stat small{font-size:13px;color:var(--gray);font-weight:400;display:block}
+  details{background:#fff;border-radius:10px;margin:10px 0;box-shadow:0 2px 8px rgba(31,42,31,.07);overflow:hidden}
+  summary{cursor:pointer;padding:14px 18px;font-weight:700;font-size:14.5px;list-style:none;display:flex;align-items:center;gap:10px}
+  summary::before{content:"▸";color:var(--gold);transition:transform .15s}
+  details[open] summary::before{transform:rotate(90deg)}
+  details .body{padding:0 18px 16px}
+  .step{display:flex;gap:14px;margin:14px 0;align-items:flex-start}
+  .step .n{background:var(--forest);color:#fff;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0;font-size:14px}
+  .step.gold .n{background:var(--gold);color:var(--ink)}
+  .phone{background:#fff;border-radius:14px;padding:16px;max-width:430px;box-shadow:0 4px 18px rgba(31,42,31,.12);margin:14px 0}
+  .bub{border-radius:10px;padding:9px 13px;font-size:13.5px;margin:7px 0;max-width:88%}
+  .bub.bot{background:var(--moss-tint);border:1px solid #d8e4c8}
+  .bub.user{background:var(--forest);color:#fff;margin-left:auto}
+  .bub .meta{font-size:10px;color:var(--gray);margin-bottom:3px}
+  .bub.user .meta{color:#cfe0c6}
+  .q{background:#fff;border-radius:10px;padding:16px 20px;margin:12px 0;box-shadow:0 2px 8px rgba(31,42,31,.07)}
+  .q .opts button{display:block;width:100%;text-align:left;margin:6px 0;padding:9px 13px;border:1.5px solid #dfe3d6;background:#fafbf7;border-radius:8px;cursor:pointer;font-size:13.5px;font-family:inherit}
+  .q .opts button:hover{border-color:var(--moss)}
+  .q .opts button.right{background:var(--moss-tint);border-color:var(--forest);font-weight:700}
+  .q .opts button.wrong{background:#fbeaea;border-color:#c66}
+  .q .why{display:none;margin-top:10px;font-size:13px;color:var(--gray);border-left:3px solid var(--gold);padding-left:10px}
+  .callout{border-left:4px solid var(--gold);background:#fff;padding:14px 18px;border-radius:0 10px 10px 0;margin:14px 0}
+  footer{margin-top:70px;color:var(--gray);font-size:12.5px;border-top:1px solid #e2e5da;padding-top:16px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<nav id="nav">
+  <h1>STODI</h1>
+  <p class="tag">Interactive architecture tour</p>
+  <div class="sec">Concept</div>
+  <a href="#idea">1 · The Big Idea</a>
+  <a href="#map">2 · The System Map</a>
+  <div class="sec">The Brain</div>
+  <a href="#agents">3 · The Five Agents</a>
+  <a href="#journey">4 · A Message's Journey</a>
+  <a href="#drip">5 · The Autonomous Drip</a>
+  <div class="sec">The Content</div>
+  <a href="#packs">6 · Exam Packs</a>
+  <a href="#mcp">7 · MCP Pack Registry</a>
+  <a href="#memory">8 · Memory &amp; Mastery</a>
+  <div class="sec">The Proof</div>
+  <a href="#evals">9 · Evals (77/77)</a>
+  <a href="#security">10 · Security</a>
+  <div class="sec">Operating It</div>
+  <a href="#ops">11 · Run &amp; Deploy</a>
+  <a href="#trouble">12 · Common Pitfalls</a>
+  <a href="#quiz">13 · Test Yourself</a>
+</nav>
+
+<main>
+
+<h2 id="idea">1 · The Big Idea</h2>
+<p class="lead">Stodi is not a chatbot. It's a <b>retention loop that owns itself.</b></p>
+
+<div class="card">
+<p>Most study tools are <b>reactive</b>: the student opens the app, uploads notes, asks questions — the tool waits. Stodi inverts that:</p>
+<div class="step"><div class="n">1</div><p><b>It knows what the student knows</b> — every answer updates a per-topic mastery score (0–100%).</p></div>
+<div class="step"><div class="n">2</div><p><b>It predicts when they'll forget</b> — weaker topics get shorter review intervals (spaced repetition).</p></div>
+<div class="step gold"><div class="n">3</div><p><b>It texts first</b> — when a topic is due, a personalized quiz lands in the student's Telegram. Nobody opened an app.</p></div>
+</div>
+
+<p>Three design pillars:</p>
+<table>
+<tr><th>Pillar</th><th>Contrast</th><th>Why it matters</th></tr>
+<tr><td><b>Autonomous</b> — the agent initiates</td><td>Q&amp;A tools wait for motivated students</td><td>The students who most need structure never drive</td></tr>
+<tr><td><b>Grounded</b> — official syllabus + marking schemes</td><td>generic LLM content</td><td>Stodi grades like an examiner; it can't hallucinate the syllabus</td></tr>
+<tr><td><b>Channel-native</b> — lives in Telegram/WhatsApp</td><td>web/app-first tools</td><td>No install, data-light, in the app students already open daily</td></tr>
+</table>
+
+<h2 id="map">2 · The System Map</h2>
+<p class="lead">One repo, five layers. Every box below is a real file.</p>
+
+<pre>
+Student (Telegram · photo · text)
+   │
+   ▼
+<b>CHANNEL LAYER</b>            telegram_bot.py        ← thin glue only
+   │  (long-polls Telegram; /start /maths /quiz /drip /progress)
+   ▼
+<b>SERVICE LAYER</b>            core/service.py        ← channel-agnostic core
+   │  handle_message() · ocr_image() · switch_pack() · get_progress()
+   ▼
+<b>ADK RUNNER</b>               (google-adk 2.1)       ← sessions, event loop
+   │
+   ▼
+<b>ORCHESTRATOR</b>             agents/orchestrator.py ← classifies intent, routes
+   ├── Curriculum            agents/curriculum.py   ← source of truth + MCP registry
+   ├── Tutor                 agents/tutor.py        ← Socratic drills
+   ├── Retention             agents/retention.py    ← what to review, when
+   └── Grader                agents/grader.py       ← examiner-style scoring
+   │
+   ▼
+<b>TOOLS &amp; DATA</b>             tools/ · exam_packs/ · persistence/
+   calculator (safe AST) · drip scheduler · grounding · pilot stats
+   pack.json bundles · JSON/Firestore student store
+</pre>
+
+<div class="grid">
+<div class="card"><span class="pill">HTTP API</span><p style="margin-top:8px"><code>core/api.py</code> — FastAPI: <code>/health</code> (open), <code>/chat</code>, <code>/switch</code>, <code>/progress</code>, <code>/drip</code> (X-API-Key gated). This is the Cloud Run service.</p></div>
+<div class="card"><span class="pill" style="background:var(--gold);color:var(--ink)">KEY DESIGN</span><p style="margin-top:8px">The Telegram bot does <b>not</b> call the HTTP API. Both the bot and the API call <code>core/service.py</code> directly. One brain, two doors — adding WhatsApp is a third door, not a rebuild.</p></div>
+</div>
+
+<h2 id="agents">3 · The Five Agents</h2>
+<p class="lead">Each is an ADK <code>Agent(...)</code> — a model + an instruction + tools. The orchestrator holds the other four as <code>sub_agents</code>, and the LLM itself decides who handles each turn (ADK transfer).</p>
+
+<details open><summary>🧭 Orchestrator — <code>agents/orchestrator.py</code></summary><div class="body">
+<p><b>Job:</b> classify intent → route to the right specialist → synthesize a short, chat-friendly reply.</p>
+<p><b>Notable rules:</b> never ask students for internal IDs; route "what packs do you cover?" to Curriculum (MCP registry); keep replies short; ground everything.</p>
+<p><b>No tools of its own</b> — its power is the <code>sub_agents</code> list.</p>
+</div></details>
+
+<details><summary>📚 Curriculum — <code>agents/curriculum.py</code> (the source of truth)</summary><div class="body">
+<p><b>Job:</b> own the active Exam Pack. If content didn't come from here, it doesn't exist.</p>
+<p><b>Tools:</b> <code>lookup_topic</code> (fuzzy name→topic), <code>get_past_questions</code>, <code>search_questions</code> (Vertex AI Search when provisioned, local corpus otherwise), <code>get_marking_scheme</code>, <code>get_syllabus_summary</code>, <code>load_pack</code> — plus the <b>MCP toolset</b> (<code>list_packs / pack_manifest / pack_questions</code>, see §7).</p>
+<p><b>The rule that defines the product:</b> "NEVER generate questions or content not in the exam pack."</p>
+</div></details>
+
+<details><summary>🧑‍🏫 Tutor — <code>agents/tutor.py</code> (Socratic, relentless)</summary><div class="body">
+<p><b>Job:</b> teach and drill — one question at a time, never hands over the answer, guides the student to it.</p>
+<p><b>Star tool:</b> <code>generate_mcq_drill(topic)</code> — takes the student's <i>plain words</i> ("quadratic equations"), resolves them against the syllabus itself (exact id → name match → word match → highest-weight fallback) and returns real pack questions with answers + schemes for the model to administer. Students are never asked for internal identifiers.</p>
+<p><b>Also:</b> <code>calculate</code> (safe AST calculator — the tutor never does mental math), formula cards, math formatting, study sheets.</p>
+</div></details>
+
+<details><summary>🧠 Retention — <code>agents/retention.py</code> (the wedge)</summary><div class="body">
+<p><b>Job:</b> decide <i>what to surface and when</i>. Reads mastery, ranks topics by urgency = <code>(100 − mastery) + hours_since_review</code>, schedules reviews.</p>
+<p><b>Feeds:</b> the morning drip (§5) and "what should I revise today?" queries.</p>
+</div></details>
+
+<details><summary>✅ Grader — <code>agents/grader.py</code> (the examiner)</summary><div class="body">
+<p><b>Job:</b> score answers against the pack's official marking scheme. MCQ = deterministic code (<code>grade_mcq</code>). Theory/essay = the LLM applies the scheme point-by-point with partial credit.</p>
+<p><b>Measured:</b> matches examiner-labelled marks exactly on 9/10 held-out answers (§9).</p>
+</div></details>
+
+<h2 id="journey">4 · A Message's Journey</h2>
+<p class="lead">One real message, end to end.</p>
+
+<div class="phone">
+  <div class="bub user"><div class="meta">student</div>Quiz me on quadratic equations</div>
+</div>
+
+<div class="step"><div class="n">1</div><p><code>telegram_bot.handle_text()</code> receives the update, shows "typing…", calls <code>service.handle_message(user_id, text)</code>.</p></div>
+<div class="step"><div class="n">2</div><p><code>core/service.py</code> loads the student's pack choice from the store, gets/creates their ADK <b>session</b>, and feeds the message to the <b>Runner</b>.</p></div>
+<div class="step"><div class="n">3</div><p>The <b>orchestrator</b> (Gemini) classifies this as a drill request → emits <code>transfer_to_agent(tutor_agent)</code>.</p></div>
+<div class="step"><div class="n">4</div><p>The <b>tutor</b> calls <code>generate_mcq_drill("quadratic equations")</code> → the tool resolves it to syllabus topic <b>B3</b> and returns the real pack question <i>x² − 5x + 6 = 0</i> with its marking scheme.</p></div>
+<div class="step"><div class="n">5</div><p>The tutor presents <b>one</b> question (drill protocol) and waits.</p></div>
+<div class="step"><div class="n">6</div><p>The student answers → grading (scheme-based, partial credit) → mastery update → reply streams back up through service → bot → Telegram.</p></div>
+
+<div class="phone">
+  <div class="bub bot"><div class="meta">stodi</div>Let's test your knowledge on <b>Quadratic Equations</b> 📚<br><br><b>Solve: x² − 5x + 6 = 0</b></div>
+  <div class="bub user"><div class="meta">student</div>(x−2)(x−3)=0 so x = 2 or 3</div>
+  <div class="bub bot"><div class="meta">stodi</div>🔥 Perfect! Factored correctly. Ready for the next one? 💪</div>
+</div>
+
+<div class="callout"><b>Failure path by design:</b> if the model call throws (e.g. a 429 quota burst), <code>service.handle_message</code> catches it and replies <i>"Whew, everyone's studying at once! 😅"</i> — a student never sees a 500.</div>
+
+<h2 id="drip">5 · The Autonomous Drip — how Stodi texts first</h2>
+<p class="lead">File: <code>tools/drip_scheduler.py</code>. This is the differentiator.</p>
+
+<h3>The spaced-repetition clock</h3>
+<table>
+<tr><th>Mastery</th><th>Status</th><th>Next review due</th></tr>
+<tr><td>&lt; 50%</td><td>weak</td><td><b>24 h</b> after last review</td></tr>
+<tr><td>50–79%</td><td>medium</td><td>48 h</td></tr>
+<tr><td>80–94%</td><td>strong</td><td>72 h</td></tr>
+<tr><td>95%+</td><td>mastered</td><td>168 h (1 week)</td></tr>
+</table>
+
+<h3>Who gets texted, and what</h3>
+<div class="step"><div class="n">1</div><p><code>get_students_due_now()</code> scans every profile: any topic past its due time → student is due.</p></div>
+<div class="step"><div class="n">2</div><p><code>build_drip_quiz(student)</code> picks <b>2 weakest due topics + 1 strong topic</b> ("💪 confidence boost") and pulls real questions from the student's own pack.</p></div>
+<div class="step"><div class="n">3</div><p><code>format_drip_message()</code> renders the "☀️ Good morning!" message.</p></div>
+<div class="step gold"><div class="n">4</div><p>Delivery — two paths: a <b>local poller</b> (background task in the bot, every <code>STODI_DRIP_INTERVAL_MINUTES</code>) or <b>Cloud Scheduler → POST /drip</b> on Cloud Run at 08:00 Africa/Lagos.</p></div>
+
+<div class="callout"><b>Safety latch:</b> <code>STODI_DRIP_DRY_RUN=true</code> makes the scheduler log instead of send — drips can never accidentally message real students from a dev machine.</div>
+
+<h2 id="packs">6 · Exam Packs — the scale story</h2>
+<p class="lead">An exam is <b>content, not code</b>. One JSON bundle per exam/subject in <code>exam_packs/&lt;board&gt;/&lt;subject&gt;/pack.json</code>.</p>
+
+<pre>
+{
+  "name": "WAEC Mathematics",  "version": "1.1",
+  "syllabus":   { "topics": [ {"id":"B3","name":"Quadratic Equations",
+                               "difficulty":"hard","weight":3.0}, …25 ] },
+  "past_questions": { "questions": [
+      { "id":"WAEC-MATH-2022-02", "topic_id":"B3", "question_type":"theory",
+        "question_text":"Solve: x² − 5x + 6 = 0",
+        "correct_answer":"x = 2 or x = 3",
+        "marking_scheme":"1 mark factorization, 1 mark per root. Total 3.",
+        "marks":3 }, …25 ] },
+  "retention":  { "max_questions_per_drip":5, "drip_time":"08:00" }
+}
+</pre>
+
+<div class="grid">
+<div class="card"><div class="stat">25 / 25<small>WAEC Maths — topics / questions</small></div></div>
+<div class="card"><div class="stat">19 / 20<small>WAEC English — incl. essay marking rubrics</small></div></div>
+</div>
+
+<p><b>Why it scales:</b> a new exam (JAMB ≈ 2M candidates) is a <i>content drop</i> on the same five agents. Each pack is a SKU. The loader (<code>config/exam_pack.py</code>) validates everything through Pydantic — a malformed pack can't load.</p>
+
+<h2 id="mcp">7 · MCP — Packs as a Protocol</h2>
+<p class="lead">The Model Context Protocol is a standard way for agents to call external tools. Stodi doesn't just <i>use</i> MCP — it <b>serves</b> it.</p>
+
+<div class="step"><div class="n">1</div><p><b>The server</b> — <code>mcp_server.py</code> (dependency-light, no stodi imports). Exposes three tools over stdio: <code>list_packs</code>, <code>pack_manifest</code>, <code>pack_questions</code>. Runs standalone: <code>python stodi/mcp_server.py</code>.</p></div>
+<div class="step"><div class="n">2</div><p><b>The mount</b> — in <code>agents/curriculum.py</code>, an ADK <code>McpToolset</code> spawns that server as a subprocess and exposes its tools to the agent like any other tool.</p></div>
+<div class="step gold"><div class="n">3</div><p><b>The point</b> — packs are external, swappable content behind a standard interface. Any MCP-capable agent can mount the same registry. <i>Exam packs as a service.</i></p></div>
+
+<pre>
+pack_registry_mcp = McpToolset(
+    connection_params=StdioConnectionParams(
+        server_params=StdioServerParameters(
+            command=sys.executable, args=[str(_MCP_SERVER)]),
+        timeout=15.0),
+    tool_filter=["list_packs", "pack_manifest", "pack_questions"])
+</pre>
+
+<p><b>Try it live:</b> ask the bot <i>"What exam packs do you cover?"</i> → curriculum calls <code>list_packs</code> over MCP → answers with exact counts, not vibes.</p>
+
+<h2 id="memory">8 · Memory &amp; Mastery — "we remember you"</h2>
+<p class="lead">Files: <code>tools/agent_tools.py</code> (logic) + <code>persistence/store.py</code> (storage).</p>
+
+<h3>The student profile</h3>
+<pre>
+{ "student_id": "…",
+  "current_exam_board": "waec", "current_subject": "mathematics",
+  "mastery": { "B3": { "pct": 38, "attempts": 3,
+                       "last_review": "2026-06-11T…",
+                       "history": [25, 33, 38] } },
+  "weak_topics": ["B3","A4"], "strong_topics": ["D1"],
+  "total_quizzes": 7, "total_correct": 3 }
+</pre>
+
+<div class="grid">
+<div class="card"><h3>The 70/30 rule</h3><p>A new score never overwrites mastery — it blends: <code>new = 0.7×old + 0.3×latest</code>. One lucky guess can't fake mastery; one bad day can't erase it.</p></div>
+<div class="card"><h3>Thresholds</h3><p>&lt;50% → <b>weak</b> list (drilled hardest) · ≥80% → <b>strong</b> list (used for morale boosters in drips).</p></div>
+</div>
+
+<h3>Three storage backends, one interface</h3>
+<table>
+<tr><th>Backend</th><th>When</th><th>Set by</th></tr>
+<tr><td><code>JSONFileStore</code> → <code>data/profiles.json</code></td><td>local dev (default)</td><td><code>STODI_STORE=json</code></td></tr>
+<tr><td><code>FirestoreStore</code></td><td>production (Cloud Run)</td><td><code>STODI_STORE=firestore</code></td></tr>
+<tr><td><code>MemoryStore</code></td><td>tests &amp; evals — can never touch real students</td><td><code>STODI_STORE=memory</code></td></tr>
+</table>
+
+<h2 id="evals">9 · Evals — proven, not promised</h2>
+<p class="lead">File: <code>evals/run_evals.py</code>. Run: <code>PYTHONPATH=.. venv/bin/python -m stodi.evals.run_evals</code></p>
+
+<div class="card"><div class="stat">77 / 77<small>checks green on Gemini 3.5 Flash (Vertex AI) — results in evals/results.json</small></div></div>
+
+<table>
+<tr><th>Suite</th><th>Proves</th><th>Result</th></tr>
+<tr><td>pack_integrity</td><td>every answer key valid, every topic link real, every theory Q has a scheme</td><td>10/10</td></tr>
+<tr><td>mcq_grading</td><td>every MCQ in every pack grades correctly (incl. case/whitespace/wrong-answer)</td><td>29/29</td></tr>
+<tr><td>calculator</td><td>WAEC-style math exact; injection attempts <b>rejected</b></td><td>13/13</td></tr>
+<tr><td>retention</td><td>70/30 blending, weak/strong lists, weakest-first queue</td><td>7/7</td></tr>
+<tr><td>grading_llm</td><td>Grader vs examiner-labelled marks — <b>9/10 exact, 10/10 within ±1</b></td><td>10/10</td></tr>
+<tr><td>routing_llm</td><td>orchestrator routes 8 intents to the correct sub-agent</td><td>8/8</td></tr>
+</table>
+
+<div class="callout"><b>Why it exists:</b> the integrity suite caught a real bug before launch — an answer key that contradicted its own marking scheme. When the pitch is "exam-accurate," correctness is enforced by CI, not vibes. The LLM suites auto-skip (with the reason printed) when no credential is available, so CI never over-claims.</div>
+
+<h2 id="security">10 · Security — the four locks</h2>
+<div class="grid">
+<div class="card"><h3>1 · No inbound bot endpoint</h3><p>The bot <b>long-polls</b> Telegram, authenticated by the bot token. There is no public webhook to attack. The token lives only in <code>.env</code> (gitignored).</p></div>
+<div class="card"><h3>2 · API key gate</h3><p>On Cloud Run, <code>/chat /switch /progress /drip</code> require <code>X-API-Key</code> (env <code>STODI_API_KEY</code>). A stranger with the URL gets 401, not a model bill. <code>/health</code> stays open.</p></div>
+<div class="card"><h3>3 · No eval(), ever</h3><p><code>tools/safe_math.py</code> parses expressions into an AST and walks a whitelist. <code>__import__('os')</code> → rejected. Verified in the calculator eval suite.</p></div>
+<div class="card"><h3>4 · Blast-radius control</h3><p>Drips are dry-run gated; evals force the memory store; model 429s degrade to a friendly retry message — never a 500.</p></div>
+</div>
+
+<h2 id="ops">11 · Run &amp; Deploy</h2>
+<pre>
+<b># Telegram bot (run from stodi/ — .env is read from cwd)</b>
+PYTHONPATH=.. venv/bin/python -m stodi.telegram_bot
+
+<b># API locally</b>
+PYTHONPATH=.. venv/bin/uvicorn stodi.core.api:app --reload --port 8080
+
+<b># Tests + evals</b>
+PYTHONPATH=.. STODI_STORE=memory venv/bin/python -m pytest tests/ -q
+PYTHONPATH=.. venv/bin/python -m stodi.evals.run_evals
+
+<b># Deploy everything (APIs → Firestore → Cloud Run → Scheduler)</b>
+gcloud auth login &amp;&amp; gcloud auth application-default login   # once
+STODI_API_KEY=&lt;key&gt; ./deploy.sh
+
+<b># Cohort traction report</b>
+PYTHONPATH=.. venv/bin/python -m stodi.tools.pilot_stats
+</pre>
+
+<h3>Env vars that matter</h3>
+<table>
+<tr><th>Var</th><th>What it does</th></tr>
+<tr><td><code>STODI_MODEL</code></td><td>model id. <b>Gemini 3.x requires</b> <code>GOOGLE_CLOUD_LOCATION=global</code> — regional endpoints 404 all 3.x ids</td></tr>
+<tr><td><code>STODI_STORE</code></td><td>json | firestore | memory</td></tr>
+<tr><td><code>STODI_DRIP_DRY_RUN</code></td><td>the drip safety latch</td></tr>
+<tr><td><code>STODI_API_KEY</code></td><td>locks the public API</td></tr>
+<tr><td><code>VERTEX_SEARCH_DATASTORE</code></td><td>set it → grounding upgrades from local corpus to Vertex AI Search</td></tr>
+</table>
+
+<h2 id="trouble">12 · Common Pitfalls</h2>
+<details><summary>Bot answers /start but ignores everything else</summary><div class="body"><p><b>Two bot processes are fighting.</b> Telegram allows ONE poller per token; duplicates cause conflicts and messages vanish. <code>pgrep -f telegram_bot</code> must show exactly one PID.</p></div></details>
+<details><summary>"Reauthentication is needed" / Vertex auth errors</summary><div class="body"><p>ADC expired: <code>gcloud auth application-default login</code>. The eval harness auto-skips LLM suites (with the reason) instead of failing.</p></div></details>
+<details><summary>429 RESOURCE_EXHAUSTED</summary><div class="body"><p>Fresh-project Vertex quota is bursty. The service replies with a friendly retry message and recovers in ~30–60s.</p></div></details>
+<details><summary>"gemini-3.5-flash 404 NOT_FOUND"</summary><div class="body"><p>Regional endpoint. Gemini 3.x is served via <code>GOOGLE_CLOUD_LOCATION=global</code> only. Note: <code>deploy.sh</code> uses that variable as the Cloud Run <i>region</i> — keep us-central1 in the deploy shell and set <code>global</code> on the service env.</p></div></details>
+<details><summary>Cloud Run source deploy: PERMISSION_DENIED on build</summary><div class="body"><p>New GCP projects don't grant the compute service account build rights. Grant <code>roles/cloudbuild.builds.builder</code> (+ <code>aiplatform.user</code>, <code>datastore.user</code> for runtime) to <code>&lt;project-number&gt;-compute@developer.gserviceaccount.com</code>.</p></div></details>
+<details><summary>Drip never sends</summary><div class="body"><p>Checklist: ① <code>STODI_DRIP_DRY_RUN=false</code>? ② does the student have mastery topics at all? ③ is anything actually <i>due</i> (last_review + interval ≤ now)? ④ poller interval short enough to notice?</p></div></details>
+<details><summary>Bot exits instantly: "TELEGRAM_BOT_TOKEN not set"</summary><div class="body"><p><code>load_dotenv()</code> reads <code>.env</code> from the <b>current working directory</b> — launch the bot from inside <code>stodi/</code>.</p></div></details>
+
+<h2 id="quiz">13 · Test Yourself</h2>
+<p class="lead">Five questions, Stodi-style — click an answer.</p>
+
+<div class="q"><p><b>Q1.</b> A student types "quiz me on algebra". Which component turns those plain words into a syllabus topic id?</p>
+<div class="opts">
+<button data-r="0">The orchestrator asks the student for the Topic ID</button>
+<button data-r="1">generate_mcq_drill resolves the name inside the tool itself</button>
+<button data-r="0">Vertex AI Search</button>
+</div><p class="why">The tool does the resolving (exact id → name → word → weight fallback). Design principle: fix the tool signature, not the prompt.</p></div>
+
+<div class="q"><p><b>Q2.</b> Mastery is 100%, then the student bombs a quiz (0%). New mastery?</p>
+<div class="opts">
+<button data-r="0">0%</button>
+<button data-r="1">70%</button>
+<button data-r="0">50%</button>
+</div><p class="why">70/30 weighted blend: 0.7×100 + 0.3×0 = 70. One bad day can't erase real knowledge.</p></div>
+
+<div class="q"><p><b>Q3.</b> Why can't a stranger with the Cloud Run URL burn model credits?</p>
+<div class="opts">
+<button data-r="1">/chat returns 401 without the X-API-Key header</button>
+<button data-r="0">Cloud Run is private</button>
+<button data-r="0">They can — it's a known risk</button>
+</div><p class="why">All credit-spending routes are key-gated; only /health is open.</p></div>
+
+<div class="q"><p><b>Q4.</b> What makes Stodi "autonomous" rather than just another chatbot?</p>
+<div class="opts">
+<button data-r="0">It uses five agents instead of one</button>
+<button data-r="1">The retention engine + scheduler initiate contact when reviews are due — no user action</button>
+<button data-r="0">It has a Telegram interface</button>
+</div><p class="why">Scheduler fires → retention picks weak due topics → quiz lands on the student's lock screen. Everything else is supporting cast.</p></div>
+
+<div class="q"><p><b>Q5.</b> Why does Gemini 3.5 Flash 404 on us-central1?</p>
+<div class="opts">
+<button data-r="0">It needs an AI Studio key</button>
+<button data-r="0">It doesn't exist</button>
+<button data-r="1">Gemini 3.x is served only via the Vertex global endpoint</button>
+</div><p class="why">Set GOOGLE_CLOUD_LOCATION=global for 3.x model ids.</p></div>
+
+<footer>
+Stodi — Interactive Architecture Tour · every section maps to a real file in this repository · see also README.md, EVALS.md, PITCH.md, SUBMISSION.md
+</footer>
+
+</main>
+</div>
+
+<script>
+document.querySelectorAll('.q').forEach(q => {
+  q.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      q.querySelectorAll('button').forEach(b => {
+        b.classList.remove('right','wrong');
+        if (b.dataset.r === '1') b.classList.add('right');
+      });
+      if (btn.dataset.r !== '1') btn.classList.add('wrong');
+      q.querySelector('.why').style.display = 'block';
+    });
+  });
+});
+const links = document.querySelectorAll('nav a');
+const obs = new IntersectionObserver(es => {
+  es.forEach(e => {
+    if (e.isIntersecting) {
+      links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id));
+    }
+  });
+}, {rootMargin: '-20% 0px -70% 0px'});
+document.querySelectorAll('h2[id]').forEach(h => obs.observe(h));
+</script>
+</body>
+</html>

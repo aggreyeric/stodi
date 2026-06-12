@@ -80,6 +80,7 @@ on Vertex AI**. See [EVALS.md](EVALS.md).
 
 | Doc | What's in it |
 |---|---|
+| [TOUR.html](TOUR.html) | **Interactive architecture tour** — open in a browser; the whole system in 10 minutes |
 | [MISSION.md](MISSION.md) | Mission, wedge, beachhead, MVP scope |
 | [SPEC.md](SPEC.md) | Build spec & mandatory-tech compliance |
 | [ARCH.md](ARCH.md) / [FLOW.md](FLOW.md) | Architecture & agentic flows |
